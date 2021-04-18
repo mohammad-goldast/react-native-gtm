@@ -4,19 +4,13 @@ React Native wrapper package for using native Google tag manager libraries on iO
 ## Installation
 
 
-1. Install `rnpm` package to easy link android & ios native project.
+1. Install `react-native-gtm` by  `this repo`.
 
     ```
-    npm install -g rnpm 
+    npm install https://github.com/mohammad-goldast/react-native-gtm/tree/master
     ```
 
-2. Install `react-native-gtm` by  `rnpm`.
-
-    ```
-    rnpm install react-native-gtm
-    ```
-
-3. extra step for IOS native project: 
+2. extra step for IOS native project: 
 
 - Open iOS project by Xcode, click `project name` node , then find `Build Phases` tab at right side windows , expand `Link Binary With Libraries` section , add below libraries:
     
@@ -30,53 +24,53 @@ React Native wrapper package for using native Google tag manager libraries on iO
 
 ## How to use
 
-###openContainerWithId(containerId)
+#### openContainerWithId(containerId)
 Import the libaries and call `openContainerWithId` to create singleton instance.
-    ```
-    import GoogleTagManager from 'react-native-gtm';
+```js
+import GoogleTagManager from 'react-native-gtm';
+```
+
+```js
+const InitGTM = () => {
+    GoogleTagManager.openContainerWithId("GTM-XXXX")
+      .then(function(){
+          //open container success
+      })
+}
     
-    (function initializeGA() {
-	    GoogleTagManager.openContainerWithId("GTM-XXXX")
-	        .then(function(){
-	            //open container success
-	        })
-    }());
-    
- 
-###push({json})
-Import the libaries and call `openContainerWithId` to create singleton instance.  ***Note: {json} now(>0.1.5) support array type included on Andriod , but not full test.***
+```
 
 1. If first key **is** `event` , the `push` will fire a event with others keyPairs to `datalayer`. 
 
-    ```
-    GoogleTagManager.push({
-            event:"openScreen",
-            screenName:"HomeScreen",
-            appName:"HelloApp"
-        });
-    ```
+```
+GoogleTagManager.push({
+   event:"openScreen",
+   screenName:"HomeScreen",
+   appName:"HelloApp"
+});
+```
     
 2. If first key **not** `event` , the `push` will send keyPairs value to `datalayer`. 
 
-    ```
-    GoogleTagManager.push({
-            sku:"some sku",
-            productName:"some product name",
-            price:123,
-            ...
-        });
-    ```
+```
+GoogleTagManager.push({
+   sku:"some sku",
+   productName:"some product name",
+   price:123,
+   ...
+});
+```
 
 3. let value is `null` to clean the datalayer data. 
 
-    ```
-    GoogleTagManager.push({
-            sku:null,
-            productName:null,
-            price:null,
-            ...
-        });
-    ```
+```
+GoogleTagManager.push({
+   sku:null,
+   productName:null,
+   price:null,
+   ...
+});
+```
 
  
 ## Reference
